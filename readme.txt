@@ -1,1 +1,1 @@
-scoper ssm ¿¼ºË
+scoper ssm åŸºç¡€è€ƒæ ¸
