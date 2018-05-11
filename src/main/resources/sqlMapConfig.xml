@@ -21,6 +21,6 @@
     <!-- 加载映射文件 mapper -->
     <mappers>
         <!-- 路径用 斜线（/） 分割，而不是用 点(.) -->
-        <mapper resource="UserMapper.xml"></mapper>
+        <mapper resource="dao/UserMapper.xml"></mapper>
     </mappers>
 </configuration>

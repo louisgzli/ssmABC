@@ -12,6 +12,6 @@
      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
     <!--  ================================== import sub-config file  ================================== -->
-    <import resource="beans.xml"/>
+    <import resource="mybatis-spring.xml"/>
     <!--  ================================== /import sub-config file  ================================== -->
 </beans>

@@ -1,0 +1,5 @@
+dao\UserDaoMapper.class
+action\HelloworldAction.class
+model\MessageStore.class
+action\Register.class
+model\Person.class

@@ -1,7 +1,13 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import dao.UserDaoMapper;
 import model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import javax.annotation.	Resource;
+import java.util.List;
 
 /**
  * @author: blissolee
@@ -9,7 +15,10 @@ import model.Person;
  * @version :
  * 
  */
+
 public class Register extends ActionSupport {
+	@Resource
+	public UserDaoMapper userDaoMapper;
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +29,9 @@ public class Register extends ActionSupport {
 	public String execute() throws Exception {
 		// call service class to store personBean's state in database
 		System.out.println("============" + personBean.getName());
+		System.out.println(userDaoMapper.findAll());
 		return SUCCESS;
+
 	}
 
 	public Person getPersonBean() {
