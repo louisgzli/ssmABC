@@ -24,20 +24,21 @@ public class UserDaoMapperTest {
         applicationContext = new ClassPathXmlApplicationContext(springXML);
 
     }
-    @Test
-    public void testSingleMapper(){
-
-        UserDaoMapper userMapper = (UserDaoMapper) applicationContext.getBean("singleMapper");  //单mapper要引用id
-        List<Person> user = userMapper.findAll();
-//        System.out.println(user);
-
-    }
+//    @Test
+//    public void testSingleMapper(){
+//
+//        UserDaoMapper userMapper = (UserDaoMapper) applicationContext.getBean("singleMapper");  //单mapper要引用id
+//        List<Person> user = userMapper.findAll();
+////        System.out.println(user);
+//
+//    }
     @Test
     public void testMultiMapper(){
 
 
         UserDaoMapper userMapper = (UserDaoMapper) applicationContext.getBean("userDaoMapper"); //批量mapper要引用“mapper接口名”，且首字母小写
         List<Person> user = userMapper.findAll();
+        System.out.println("------==============------------");
         System.out.println(user);
     }
 }

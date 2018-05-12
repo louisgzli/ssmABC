@@ -1,5 +1,8 @@
-dao\UserDaoMapper.class
-action\HelloworldAction.class
 model\MessageStore.class
 action\Register.class
+dao\UserDaoMapper.class
+action\HelloworldAction.class
+dao\CompanyDaoMapper.class
+action\CompanyAction.class
+model\Company.class
 model\Person.class

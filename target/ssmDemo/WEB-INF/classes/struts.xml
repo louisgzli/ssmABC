@@ -18,6 +18,10 @@
 			<result name="success">/thankyou.jsp</result>
 
 		</action>
+		<action name="loadCompany" class = "action.CompanyAction" method="loadCompany">
+			<result type="json"/>
+			<param name="company">companies</param>
+		</action>
 	</package>
 
 </struts>
