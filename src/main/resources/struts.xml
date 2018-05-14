@@ -7,7 +7,7 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="basicstruts2" extends="struts-default">
+	<package name="basicstruts2" extends="json-default">
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
@@ -19,7 +19,7 @@
 
 		</action>
 		<action name="loadCompany" class = "action.CompanyAction" method="loadCompany">
-			<result type="json"/>
+			<result name="success" type="json"/>
 			<param name="company">companies</param>
 		</action>
 	</package>

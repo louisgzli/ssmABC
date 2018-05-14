@@ -28,7 +28,7 @@ public class Register extends ActionSupport {
 
 	public String execute() throws Exception {
 		// call service class to store personBean's state in database
-		System.out.println("============" + personBean.getName());
+		System.out.println("======>>>>>>>>>>>>>>>>>>>>>======" + personBean);
 		System.out.println(userDaoMapper.findAll());
 		return SUCCESS;
 

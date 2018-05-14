@@ -39,6 +39,6 @@ public class Company {
     }
     @Override
     public String toString() {
-        return "Person{" + "company=" + company + ", staff='" + staff + '\'' + ", type=" + type + "area="+area+'}';
+        return "Company{" + "company=" + company + ", staff='" + staff + '\'' + ", type=" + type + "area="+area+'}';
     }
 }
