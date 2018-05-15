@@ -1,7 +1,13 @@
 package PersonTest;
 
+import dao.CommodityMapper;
 import dao.CompanyDaoMapper;
+import dao.EmployeeMapper;
+import dao.UserMapper;
+import model.Commodity;
 import model.Company;
+import model.Employee;
+import model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -32,18 +38,17 @@ public class CompanyTest {
     @Test
     public void testSaveOrUpdate(){
         CompanyDaoMapper companyDaoMapper = (CompanyDaoMapper) applicationContext.getBean("companyDaoMapper");
-        Company company_1 = new Company();
-        Company company_2 = new Company();
-        company_1.setId(2);
-        company_2.setId(3);
-        company_1.setCompany("洪兴");
-        company_2.setCompany("东兴");
-        company_1.setStaff(1);
-        company_2.setStaff(2);
-        List<Company> companies = new ArrayList<Company>();
-        companies.add(company_1);
-        companies.add(company_2);
-        companyDaoMapper.saveOrUpdate(company_1);
-        companyDaoMapper.saveOrUpdate(company_2);
+        EmployeeMapper employeeMapper = (EmployeeMapper) applicationContext.getBean("employeeMapper");
+        CommodityMapper commodityMapper = (CommodityMapper) applicationContext.getBean("commodityMapper");
+        UserMapper userMapper = (UserMapper) applicationContext.getBean("userMapper");
+        List<Company> companies = companyDaoMapper.findAll();
+        List<Employee> employees = employeeMapper.findAll();
+       List<Commodity> commodities = commodityMapper.findAll();
+       List<User> users = userMapper.findAll();
+
+        System.out.println(companies);
+        System.out.println(employees);
+        System.out.println(commodities);
+        System.out.println(users);
     }
 }

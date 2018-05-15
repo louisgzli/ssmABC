@@ -7,61 +7,65 @@
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="basicstruts2" extends="json-default">
-		<action name="index">
-			<result>/index.jsp</result>
-		</action>
-		<action name="hello" class="action.HelloworldAction" method="execute">
-			<result name="success">/Helloworld.jsp</result>
-		</action>
-		<action name="registerTemp" class="action.Register" method="execute">
-			<result name="success">/thankyou.jsp</result>
-		</action>
-
+	<package name="/company" extends="json-default">
 		<!--company-->
-		<action name="company/loadCompany" class = "action.CompanyAction" method="loadCompany">
+		<action name="loadCompany" class = "action.CompanyAction" method="loadCompany">
 			<result name="success" type="json"/>
 		</action>
-		<action name="company/new" class="action.CompanyAction" method="companyCreate">
+		<action name="new" class="action.CompanyAction" method="companyCreate">
 		</action>
-		<action name="company/update" class="action.CompanyAction" method="companyUpdate">
+		<action name="update" class="action.CompanyAction" method="companyUpdate">
 		</action>
-		<action name="company/dele" class="action.CompanyAction" method="companyDelete"></action>
+		<action name="dele" class="action.CompanyAction" method="companyDelete"></action>
+     </package>
 
+
+	<package name="/commodity" extends="json-default">
 		<!--commodity-->
-		<action name="commodity/loadCompany" class = "action.CommodityAction" method="loadCommodity">
+		<action name="loadCommodity" class = "action.CommodityAction" method="loadCommodity">
 			<result name="success" type="json"/>
 		</action>
-		<action name="commodity/new" class="action.CommodityAction" method="commodityCreate">
+		<action name="new" class="action.CommodityAction" method="commodityCreate">
 		</action>
-		<action name="commodity/update" class="action.CommodityAction" method="commodityUpdate">
+		<action name="update" class="action.CommodityAction" method="commodityUpdate">
 		</action>
-		<action name="commodity/dele" class="action.CommodityAction" method="dele"></action>
-
-		<!--employee-->
-		<action name="employee/loadCompany" class = "action.EmployeeAction" method="loadEmployee">
-			<result name="success" type="json"/>
-		</action>
-		<action name="employee/new" class="action.EmployeeAction" method="employeeCreate">
-		</action>
-		<action name="employee/update" class="action.EmployeeAction" method="employeeUpdate">
-		</action>
-		<action name="employee/dele" class="action.EmployeeAction" method="dele"></action>
-
-		<!--user-->
-		<action name="user/loadCompany" class = "action.UserAction" method="loadUser">
-			<result name="success" type="json"/>
-		</action>
-		<action name="user/new" class="action.UserAction" method="userCreate">
-		</action>
-		<action name="user/update" class="action.UserAction" method="userUpdate">
-		</action>
-		<action name="user/dele" class="action.UserAction" method="dele"></action>
-
-
-
-
+		<action name="dele" class="action.CommodityAction" method="dele"></action>
 
 	</package>
+
+	<package name="/employee" extends="json-default">
+		<!--employee-->
+		<action name="loadEmployee" class = "action.EmployeeAction" method="loadEmployee">
+			<result name="success" type="json"/>
+		</action>
+		<action name="new" class="action.EmployeeAction" method="employeeCreate">
+		</action>
+		<action name="update" class="action.EmployeeAction" method="employeeUpdate">
+		</action>
+		<action name="dele" class="action.EmployeeAction" method="dele"></action>
+	</package>
+
+
+
+
+	<package name="/user" extends="json-default">
+		<!--user-->
+		<action name="loadUser" class = "action.UserAction" method="loadUser">
+			<result name="success" type="json"/>
+		</action>
+		<action name="new" class="action.UserAction" method="userCreate">
+		</action>
+		<action name="update" class="action.UserAction" method="userUpdate">
+		</action>
+		<action name="dele" class="action.UserAction" method="dele"></action>
+
+	</package>
+
+
+
+
+
+
+
 
 </struts>

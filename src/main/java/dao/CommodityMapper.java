@@ -1,7 +1,7 @@
 package dao;
 
 import model.Commodity;
-import model.Company;
+
 
 import java.util.List;
 

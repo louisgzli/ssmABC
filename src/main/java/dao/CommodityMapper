@@ -21,6 +21,7 @@
             insert into commodity values(#{id}, #{name},#{pType},#{aType})
         </if>
     </insert>
+
     <delete id="deleteById" parameterType="int">
     delete from commodity where id=#{id}
   </delete>
