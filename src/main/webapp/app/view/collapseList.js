@@ -25,74 +25,206 @@ Ext.define(
         layout : 'vbox',
         items:[
             {
+
                 xtype:"button",
-                text:"button1",
-            },
-            {
-                xtype:"button",
-                text:"button1",
-            },
-            {
-                xtype:"button",
-                text:"button1",
-            },
-            {
-                xtype:"button",
-                text:"button1",
+                text:"用户管理",
+                width:"100%",
+                handler:function(){
+                    var tab = Ext.getCmp("showtab");
+                    var tab1 = tab.add([
+                        {title:"用户管理",
+                            id:"userTab",
+                            closable: true,
+                            items:[
+                                {
+                                    xtype:"user",
+                                }
+                            ]
+                    }
+                    ])
+
+
+                }
+
+
             },
 
         ]
     },
         {
         title: '企业管理',
-        html: 'Panel content!',
+
             layout : 'vbox',
+
+
             items:[
 
                 {
                     xtype:"button",
-                    text:"button1",
+                    text:"企业信息管理",
+                    width:"100%",
+                    margin:"10px",
+                    handler:function(){
+                        var tab = Ext.getCmp("showtab");
+                        var tab2 = tab.add([
+                            {title:"企业信息管理",
+                                id:"companyTab",
+                                closable: true,
+                                items:[
+                                    {
+                                        xtype:"arraygrid",
+                                    }
+                                ]
+                            }
+                        ])
+
+
+
+                    }
+
                 },
                 {
                     xtype:"button",
-                    text:"button1",
+                    text:"从业人员管理",
+                    width:"100%",
+                    margin:"10px",
+                    handler:function(){
+                        var tab = Ext.getCmp("showtab");
+                        var tab3 = tab.add([
+                            {title:"从业人员管理",
+                                id:"employeeTab",
+                                closable: true,
+                                items:[
+                                    {
+                                        xtype:"employee",
+                                    }
+                                ]
+                            }
+                        ])
+
+                    }
+
                 },
-                {
-                    xtype:"button",
-                    text:"button1",
-                },
-                {
-                    xtype:"button",
-                    text:"button1",
-                },
+
 
             ]
     },{
+
         title: '商品管理',
-        html: 'Panel content!',
-            layout : 'vbox',
+
+            layout: {
+                // layout-specific configs go here
+                type: 'accordion',
+                titleCollapse: false,
+                animate: true,
+                activeOnTop: true
+            },
             items:[
 
                 {
-                    xtype:"button",
-                    text:"button1",
-                },
-                {
-                    xtype:"button",
-                    text:"button1",
-                },
-                {
-                    xtype:"button",
-                    text:"button1",
-                },
-                {
-                    xtype:"button",
-                    text:"button1",
-                },
 
+                    title: '大类',
+                    layout : 'vbox',
+                    items:[
+                        {
+
+                            xtype:"button",
+                            text:"小类",
+                            width:"100%",
+                            handler:function(){
+                                var tab = Ext.getCmp("showtab");
+                                var tab3 = tab.add([
+                                    {title:"商品管理",
+                                        id:"commodity1",
+                                        closable: true,
+                                        items:[
+                                            {
+                                                xtype:"commodity",
+                                            }
+                                        ]
+                                    }
+                                ])
+
+                            }
+
+                        },
+                        {
+
+                            xtype:"button",
+                            text:"小类",
+                            width:"100%",
+                            handler:function(){
+                                var tab = Ext.getCmp("showtab");
+                                var tab3 = tab.add([
+                                    {title:"商品管理",
+                                        id:"commodity2",
+                                        closable: true,
+                                        items:[
+                                            {
+                                                xtype:"commodity",
+                                            }
+                                        ]
+                                    }
+                                ])
+
+                            }
+
+                        },
+
+                    ]
+                },
+                {
+
+                    title: '大类',
+                    layout : 'vbox',
+                    items:[
+                        {
+
+                            xtype:"button",
+                            text:"小类",
+                            width:"100%",
+                            handler:function(){
+                                var tab = Ext.getCmp("showtab");
+                                var tab3 = tab.add([
+                                    {title:"商品管理",
+                                        id:"commodity3",
+                                        closable: true,
+                                        items:[
+                                            {
+                                                xtype:"commodity",
+                                            }
+                                        ]
+                                    }
+                                ])
+
+                            }
+
+                        },
+                        {
+
+                            xtype:"button",
+                            text:"小类",
+                            width:"100%",
+                            handler:function(){
+                                var tab = Ext.getCmp("showtab");
+                                var tab3 = tab.add([
+                                    {title:"商品管理",
+                                        id:"commodity4",
+                                        closable: true,
+                                        items:[
+                                            {
+                                                xtype:"commodity",
+                                            }
+                                        ]
+                                    }
+                                ])
+
+                            }
+
+                        },
+
+                    ]
+                },
             ]
     }],
-
-
-    // renderTo: Ext.getBody()
 });
