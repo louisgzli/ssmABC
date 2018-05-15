@@ -5,28 +5,18 @@ Ext.define("ssmDemo.store.User",{
     extend:"Ext.data.Store",
     model:"ssmDemo.model.User",
     autoLoad:true,
-    filterOnLoad:true,
     proxy:{
-        type:"pagingmemory",
-        // type:"ajax",
-        /*api:{
-         read:"data/company.json"
-         },*/
+
+        type:"ajax",
+        url:"user/loadUser.action",
+
         reader:{
             type:"json",
-            // root:"company",
-            totalProperty:"totalCount",
+            root:"users",
         },
-        filterParam: 'query',
 
-        // The PHP script just use query=<whatever>
-        encodeFilters: function(filters) {
-            return filters[0].value;
-        }
+
 
     },
-
-
-    remoteFilter: true,
 
 })

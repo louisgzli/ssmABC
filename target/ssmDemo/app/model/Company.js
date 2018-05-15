@@ -5,6 +5,7 @@ Ext.define("ssmDemo.model.Company",{
     extend:"Ext.data.Model",
 
     fields: [
+        {name:"id",type:"int"},
         {name:'company', type:"string"},
         {name: 'staff', type: 'int'},
         {name: 'type', type: 'string'},

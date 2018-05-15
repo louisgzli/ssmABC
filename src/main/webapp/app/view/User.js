@@ -72,6 +72,8 @@ Ext.define('ssmDemo.view.User', {
                                             console.log(values);
                                             Ext.getCmp("user").getStore().insert(0, values);
                                             this.up("window").hide();
+                                            //添加同步导数据库
+                                            add(values);
 
 
                                         }
@@ -119,6 +121,9 @@ Ext.define('ssmDemo.view.User', {
                                             values = form.getValues();
                                             record.set(values);
                                             win.destroy();
+                                            //修改同步到数据库
+                                            values.id = Ext.getCmp("user").getSelectionModel().getLastSelected().data.id;
+                                            update(values);
                                         }
                                     }, {
                                         minWidth: 80,
@@ -167,7 +172,10 @@ Ext.define('ssmDemo.view.User', {
                                     console.log(record);
                                     Ext.getCmp("user").getStore().remove(record);
                                     this.up("window").close();
-
+                                    //从数据库中删除
+                                    for(var i = 0;i<record.length;i++){
+                                        dele(Ext.getCmp("user").getSelectionModel().getSelection()[i].data.id);
+                                    }
 
 
                                 }
@@ -248,6 +256,12 @@ Ext.define('ssmDemo.view.User', {
 
     initComponent: function () {
         this.columns = [
+            {
+                text:"id",
+                flex:1,
+                sortable:true,
+                dataIndex:"id",
+            },
 
             {
                 text: '用户名',
@@ -269,3 +283,39 @@ Ext.define('ssmDemo.view.User', {
     },
 
 })
+function add(values){
+    Ext.Ajax.request({
+        url: 'user/new.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            password:values.password,
+
+        }
+    });
+};
+function update(values){
+    Ext.Ajax.request({
+        url: 'user/update.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            password:values.password,
+        }
+    });
+};
+function dele(id){
+    console.log("->>>>>>>>>>>>>>>>>>>>>");
+    Ext.Ajax.request({
+        url: 'user/dele.action',
+
+        method:"post",
+        params:{
+            id:id,
+        }
+    });
+};

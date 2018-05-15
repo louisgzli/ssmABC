@@ -63,9 +63,16 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                         handler: function () {
                                             var form = this.up("window").down("form");
                                             values = form.getValues();
-                                            console.log(values);
-                                            Ext.getCmp("arraygrid").getStore().insert(0, values);
+
+                                            //添加同步导数据库
+                                            add(values);
+
+                                            var store = Ext.getCmp("arraygrid").getStore();
+
+                                            store.insert(0, values);
+
                                             this.up("window").hide();
+                                            console.log(Ext.getCmp("arraygrid").getStore().getNewRecords());
 
 
                                         }
@@ -93,6 +100,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                 listeners: {
                     click: {
                         fn: function () {
+                            var id;
                             var modify = Ext.create('ssmDemo.view.ModifyList', {
                                 dockedItems: [{
                                     xtype: 'toolbar',
@@ -109,8 +117,13 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                             var win = this.up("window");
 
                                             var form = win.down("form");
-                                            record = form.getRecord();
-                                            values = form.getValues();
+                                            var record = form.getRecord();
+                                            var values = form.getValues();
+
+                                            //修改同步到数据库
+                                            values.id = Ext.getCmp("arraygrid").getSelectionModel().getLastSelected().data.id;
+                                            update(values);
+
                                             record.set(values);
                                             win.destroy();
                                         }
@@ -125,9 +138,11 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                             })
                             form = modify.down("form");
                             record = Ext.getCmp("arraygrid").getSelectionModel().getLastSelected(),
-                                console.log("in modify" + form);
+
                             form.loadRecord(record);
                             modify.show();
+
+
 
                         }
 
@@ -157,8 +172,15 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                 minWidth: 80,
                                 text: '删除',
                                 handler: function () {
-                                    record = Ext.getCmp("arraygrid").getSelectionModel().getSelection();
-                                    console.log(record);
+                                     record = Ext.getCmp("arraygrid").getSelectionModel().getSelection();
+
+                                     //从数据库中删除
+                                    for(var i = 0;i<record.length;i++){
+                                        dele(Ext.getCmp("arraygrid").getSelectionModel().getSelection()[i].data.id);
+                                    }
+
+
+
                                     Ext.getCmp("arraygrid").getStore().remove(record);
                                     this.up("window").close();
 
@@ -254,6 +276,18 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
             },
 
+            {
+                xtype: 'button',
+                text: "保存更新",
+                tooltip: '保存更新',
+                handler:function () {
+                    Ext.getCmp("arraygrid").getStore().sync();
+                    
+                    
+                }
+
+            },
+
 
         ],
     }],
@@ -267,6 +301,12 @@ Ext.define('ssmDemo.view.ArrayGrid', {
         // ]
 
         this.columns = [
+            {
+                text:"id",
+                flex:1,
+                sortable:true,
+                dataIndex:"id",
+            },
 
             {
                 text: '公司名称',
@@ -319,5 +359,45 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
     },
 
-})
+});
+
+function add(values){
+    Ext.Ajax.request({
+        url: 'company/new.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            company:values.company,
+            staff:values.staff,
+            type:values.type,
+            area:values.area,
+        }
+    });
+};
+function update(values){
+    Ext.Ajax.request({
+        url: "company/update.action",
+
+        method:"post",
+        params:{
+            id:values.id,
+            company:values.company,
+            staff:values.staff,
+            type:values.type,
+            area:values.area,
+        }
+    });
+};
+function dele(id){
+    console.log("->>>>>>>>>>>>>>>>>>>>>");
+    Ext.Ajax.request({
+        url: 'company/dele.action',
+
+        method:"post",
+        params:{
+            id:id,
+        }
+    });
+};
 

@@ -9,28 +9,18 @@ Ext.define("ssmDemo.store.Commodity",{
     extend:"Ext.data.Store",
     model:"ssmDemo.model.Commodity",
     autoLoad:true,
-    filterOnLoad:true,
     proxy:{
-        type:"pagingmemory",
-        // type:"ajax",
-        /*api:{
-         read:"data/company.json"
-         },*/
+
+        type:"ajax",
+        url:"commodity/loadCommodity.action",
+
         reader:{
             type:"json",
-            // root:"company",
-            totalProperty:"totalCount",
+            root:"commodity",
         },
-        filterParam: 'query',
 
-        // The PHP script just use query=<whatever>
-        encodeFilters: function(filters) {
-            return filters[0].value;
-        }
+
 
     },
-
-
-    remoteFilter: true,
 
 })

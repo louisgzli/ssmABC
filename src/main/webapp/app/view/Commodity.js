@@ -66,6 +66,9 @@ Ext.define('ssmDemo.view.Commodity', {
                                         handler: function () {
                                             var form = this.up("window").down("form");
                                             values = form.getValues();
+                                            //添加数据库
+                                            add(values);
+
                                             console.log(values);
                                             Ext.getCmp("commodity").getStore().insert(0, values);
                                             this.up("window").hide();
@@ -116,6 +119,11 @@ Ext.define('ssmDemo.view.Commodity', {
                                             values = form.getValues();
                                             record.set(values);
                                             win.destroy();
+
+                                            //修改同步到数据库
+                                            values.id = Ext.getCmp("commodity").getSelectionModel().getLastSelected().data.id;
+                                            update(values);
+
                                         }
                                     }, {
                                         minWidth: 80,
@@ -164,7 +172,10 @@ Ext.define('ssmDemo.view.Commodity', {
                                     console.log(record);
                                     Ext.getCmp("commodity").getStore().remove(record);
                                     this.up("window").close();
-
+                                    //从数据库中删除
+                                    for(var i = 0;i<record.length;i++){
+                                        dele(Ext.getCmp("commodity").getSelectionModel().getSelection()[i].data.id);
+                                    }
 
 
                                 }
@@ -245,12 +256,18 @@ Ext.define('ssmDemo.view.Commodity', {
                     }).show();
                 }
             },
+
         ],
     }],
 
     initComponent: function () {
         this.columns = [
-
+            {
+                text:"id",
+                flex:1,
+                sortable:true,
+                dataIndex:"id",
+            },
             {
                 text: '商品名称',
                 flex: 1,
@@ -276,3 +293,41 @@ Ext.define('ssmDemo.view.Commodity', {
     },
 
 })
+function add(values){
+    Ext.Ajax.request({
+        url: 'commodity/new.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            aType:values.aType,
+            pType:values.pType,
+
+        }
+    });
+};
+function update(values){
+    Ext.Ajax.request({
+        url: 'commodity/update.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            aType:values.aType,
+            pType:values.pType,
+        }
+    });
+};
+function dele(id){
+    console.log("->>>>>>>>>>>>>>>>>>>>>");
+    Ext.Ajax.request({
+        url: 'commodity/dele.action',
+
+        method:"post",
+        params:{
+            id:id,
+        }
+    });
+};

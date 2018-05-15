@@ -53,10 +53,15 @@ Ext.define("ssmDemo.store.Company",{
     proxy:{
 
         type:"ajax",
-        url:"loadCompany.action",
+        url:"company/loadCompany.action",
+
         reader:{
             type:"json",
             root:"companies",
         },
+
+
+
     },
 })
+

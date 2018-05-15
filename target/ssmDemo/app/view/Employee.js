@@ -69,6 +69,8 @@ Ext.define('ssmDemo.view.Employee', {
                                             console.log(values);
                                             Ext.getCmp("employee").getStore().insert(0, values);
                                             this.up("window").hide();
+                                            //添加同步导数据库
+                                            add(values);
 
 
                                         }
@@ -116,6 +118,10 @@ Ext.define('ssmDemo.view.Employee', {
                                             values = form.getValues();
                                             record.set(values);
                                             win.destroy();
+
+                                            //修改同步到数据库
+                                            values.id = Ext.getCmp("employee").getSelectionModel().getLastSelected().data.id;
+                                            update(values);
                                         }
                                     }, {
                                         minWidth: 80,
@@ -164,8 +170,9 @@ Ext.define('ssmDemo.view.Employee', {
                                     console.log(record);
                                     Ext.getCmp("employee").getStore().remove(record);
                                     this.up("window").close();
-
-
+                                    for(var i = 0;i<record.length;i++){
+                                        dele(Ext.getCmp("employee").getSelectionModel().getSelection()[i].data.id);
+                                    }
 
                                 }
                             }, {
@@ -249,6 +256,12 @@ Ext.define('ssmDemo.view.Employee', {
 
     initComponent: function () {
         this.columns = [
+            {
+                text:"id",
+                flex:1,
+                sortable:true,
+                dataIndex:"id",
+            },
 
             {
                 text: '员工姓名',
@@ -275,3 +288,41 @@ Ext.define('ssmDemo.view.Employee', {
     },
 
 })
+function add(values){
+    Ext.Ajax.request({
+        url: 'employee/new.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            age:values.age,
+            company:values.company,
+
+        }
+    });
+};
+function update(values){
+    Ext.Ajax.request({
+        url: 'employee/update.action',
+
+        method:"post",
+        params:{
+            id:values.id,
+            name:values.name,
+            age:values.age,
+            company:values.company,
+        }
+    });
+};
+function dele(id){
+    console.log("->>>>>>>>>>>>>>>>>>>>>");
+    Ext.Ajax.request({
+        url: 'employee/dele.action',
+
+        method:"post",
+        params:{
+            id:id,
+        }
+    });
+};

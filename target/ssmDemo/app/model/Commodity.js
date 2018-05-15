@@ -4,6 +4,7 @@
 Ext.define("ssmDemo.model.Commodity",{
     extend:"Ext.data.Model",
     fields: [
+        {name:"id",type:"id"},
         {name: 'name', type: 'string'},
         {name:'pType', type:"string"},
         {name: 'aType', type: 'string'},
