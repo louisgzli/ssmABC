@@ -4,14 +4,16 @@ Ext.define("ssmDemo.controller.frontController",{
 
     views: [
 
-        "ssmDemo.view.collapseList",
+
         "ssmDemo.view.ModifyList",
         "ssmDemo.view.ArrayGrid",
         "ssmDemo.view.ShowTab",
         "ssmDemo.view.User",
         "ssmDemo.view.collapseList",
         "ssmDemo.view.Employee",
+        "ssmDemo.view.ShowTab",
         "ssmDemo.view.Commodity",
+        "ssmDemo.view.collapseList",
 
     ],
     stores:["Company","Commodity","Employee","User"],

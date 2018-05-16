@@ -5,6 +5,15 @@ public class Commodity {
     private String name;
     private String pType;
     private String aType;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public int getId() {
         return id;

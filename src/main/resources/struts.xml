@@ -58,6 +58,12 @@
 		<action name="update" class="action.UserAction" method="userUpdate">
 		</action>
 		<action name="dele" class="action.UserAction" method="dele"></action>
+	</package>
+
+	<package name="/login" extends="json-default">
+		<action name="login" class="action.UserAction" method="login">
+			<result type="json"></result>
+		</action>
 
 	</package>
 

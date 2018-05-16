@@ -1,6 +1,31 @@
 /**
  * Created by bliss on 2018/5/13.
  */
+Ext.define("tab_arraygrid",{
+    extend:"Ext.panel.Panel",
+    items:[{
+        xtype:"arraygrid",
+    }]
+
+});
+Ext.define("tab_user",{
+    extend:"Ext.panel.Panel",
+    items:[{
+        xtype:"user",
+    }]
+})
+Ext.define("tab_employee",{
+    extend:"Ext.panel.Panel",
+    items:[{
+        xtype:"employee",
+    }]
+})
+Ext.define("tab_commodity",{
+    extend:"Ext.panel.Panel",
+    items:[{
+        xtype:"commodity",
+    }]
+})
 Ext.define(
 
 
@@ -31,17 +56,20 @@ Ext.define(
                 width:"100%",
                 handler:function(){
                     var tab = Ext.getCmp("showtab");
-                    var tab1 = tab.add([
-                        {title:"用户管理",
-                            id:"userTab",
-                            closable: true,
-                            items:[
+                    if(Ext.getCmp("usertab")==undefined){
+                        tab.add(
+                            [
                                 {
-                                    xtype:"user",
+                                    id:"usertab",
+                                    title:"用户管理",
+                                    closable: true,
+                                    items:Ext.create("tab_user")
+
                                 }
                             ]
+                        )
+
                     }
-                    ])
 
 
                 }
@@ -66,17 +94,21 @@ Ext.define(
                     margin:"10px",
                     handler:function(){
                         var tab = Ext.getCmp("showtab");
-                        var tab2 = tab.add([
-                            {title:"企业信息管理",
-                                id:"companyTab",
-                                closable: true,
-                                items:[
+                        if(Ext.getCmp("arraygridtab")==undefined){
+                            tab.add(
+                                [
                                     {
-                                        xtype:"arraygrid",
+                                        id:"arraygridtab",
+                                        title:"企业信息管理",
+                                        closable: true,
+                                        items:Ext.create("tab_arraygrid")
+
                                     }
                                 ]
-                            }
-                        ])
+                            )
+
+                        }
+
 
 
 
@@ -90,17 +122,20 @@ Ext.define(
                     margin:"10px",
                     handler:function(){
                         var tab = Ext.getCmp("showtab");
-                        var tab3 = tab.add([
-                            {title:"从业人员管理",
-                                id:"employeeTab",
-                                closable: true,
-                                items:[
+                        if(Ext.getCmp("employeetab")==undefined){
+                            tab.add(
+                                [
                                     {
-                                        xtype:"employee",
+                                        id:"employeetab",
+                                        title:"从业人员管理",
+                                        closable: true,
+                                        items:Ext.create("tab_employee")
+
                                     }
                                 ]
-                            }
-                        ])
+                            )
+
+                        }
 
                     }
 
@@ -132,18 +167,21 @@ Ext.define(
                             text:"小类",
                             width:"100%",
                             handler:function(){
-                                var tab = Ext.getCmp("showtab");
-                                var tab3 = tab.add([
-                                    {title:"商品管理",
-                                        id:"commodity1",
-                                        closable: true,
-                                        items:[
+
+                                if(Ext.getCmp("employeetab")==undefined){
+                                    tab.add(
+                                        [
                                             {
-                                                xtype:"commodity",
+                                                id:"employeetab",
+                                                title:"从业人员管理",
+                                                closable: true,
+                                                items:Ext.create("tab_employee")
+
                                             }
                                         ]
-                                    }
-                                ])
+                                    )
+
+                                }
 
                             }
 

@@ -151,6 +151,8 @@ Ext.define('ssmDemo.view.Employee', {
                 tooltip: '删除',
                 id: "delete",
                 handler: function () {
+                    console.log("employee点了删除")
+
                     Ext.create("Ext.window.Window",{
                         title:"确定要删除该记录",
                         width:300,
@@ -316,7 +318,7 @@ function update(values){
     });
 };
 function dele(id){
-    console.log("->>>>>>>>>>>>>>>>>>>>>");
+
     Ext.Ajax.request({
         url: 'employee/dele.action',
 

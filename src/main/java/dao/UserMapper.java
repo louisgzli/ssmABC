@@ -9,4 +9,5 @@ public interface UserMapper {
     public List<User> findAll();
     public void saveOrUpdate(User user);
     public void deleteById(int id);
+    public User selectByName(String name);
 }

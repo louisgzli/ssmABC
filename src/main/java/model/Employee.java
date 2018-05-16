@@ -5,6 +5,15 @@ public class Employee {
     private String name;
     private int age;
     private String company;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public int getId() {
         return id;

@@ -153,6 +153,8 @@ Ext.define('ssmDemo.view.Commodity', {
                 tooltip: '删除',
                 id: "delete",
                 handler: function () {
+                    console.log("commodity点了删除")
+
                     Ext.create("Ext.window.Window",{
                         title:"确定要删除该记录",
                         width:300,

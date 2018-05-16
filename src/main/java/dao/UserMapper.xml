@@ -6,6 +6,9 @@
     <select id="findAll" resultType="model.User">
   select * from user
 </select>
+    <select id="selectByName" resultType="model.User" parameterType="String">
+        select * from user where name=#{name}
+    </select>
 
 
     <insert id="saveOrUpdate" parameterType="model.User">

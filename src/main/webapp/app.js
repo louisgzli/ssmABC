@@ -1,6 +1,7 @@
 /**
      * Created by Administrator on 2018/4/3 0003.
      */
+
     Ext.application({
 
         name: 'ssmDemo',
@@ -11,6 +12,7 @@
         ],
 
         launch: function() {
+
             //初始化左列表
             Ext.create("ssmDemo.view.collapseList",{
                 renderTo:Ext.get("grid-left"),

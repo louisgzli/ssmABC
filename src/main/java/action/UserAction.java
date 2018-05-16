@@ -7,6 +7,9 @@ import model.User;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static com.opensymphony.xwork2.Action.ERROR;
+import static com.opensymphony.xwork2.Action.SUCCESS;
+
 public class UserAction {
     @Resource
     UserMapper userMapper;
@@ -14,6 +17,16 @@ public class UserAction {
     public String name;
     public String password;
     public List<User> users;
+    public boolean success;
+    public String msg;
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
 
     public List<User> getUsers() {
         return users;
@@ -77,6 +90,28 @@ public class UserAction {
     public void dele(){
         userMapper.deleteById(id);
     }
+
+    public String  login(){
+        User user = userMapper.selectByName(name);
+        System.out.println(password);
+        System.out.println(user.getPassword().equals(password));
+        System.out.println(user!=null);
+        if(user!=null&&user.getPassword().equals(password)){
+           success = true;
+           msg = "OK";
+           return SUCCESS;
+
+
+        }
+        else {
+            msg="ERROR";
+            success = false;
+            return ERROR;
+        }
+
+
+    }
+
 
 
 

@@ -4,6 +4,15 @@ public class User {
     private int id;
     private String name;
     private String password;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public int getId() {
         return id;
