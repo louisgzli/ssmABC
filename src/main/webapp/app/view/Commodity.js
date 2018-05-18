@@ -15,7 +15,7 @@ Ext.define('ssmDemo.view.Commodity', {
         'Ext.toolbar.Paging',
     ],
     alias: "widget.commodity",
-    store: "Company",
+    store: "Commodity",
     stateful: true,
     // collapsible: true,
     multiSelect: true,
@@ -47,7 +47,7 @@ Ext.define('ssmDemo.view.Commodity', {
                 xtype: 'button',
                 text: '添加',
                 tooltip: '添加',
-                id: "add",
+
                 listeners: {
                     click: {
                         fn: function () {
@@ -94,7 +94,7 @@ Ext.define('ssmDemo.view.Commodity', {
             {
                 xtype: 'button',
                 text: '修改',
-                id: "modify",
+
                 tooltip: '修改',
                 listeners: {
                     click: {
@@ -151,7 +151,7 @@ Ext.define('ssmDemo.view.Commodity', {
                 xtype: 'button',
                 text: "删除",
                 tooltip: '删除',
-                id: "delete",
+
                 handler: function () {
                     console.log("commodity点了删除")
 
@@ -171,12 +171,13 @@ Ext.define('ssmDemo.view.Commodity', {
                                 text: '删除',
                                 handler: function () {
                                     record = Ext.getCmp("commodity").getSelectionModel().getSelection();
-                                    console.log(record);
+                                    console.log(record.length);
                                     Ext.getCmp("commodity").getStore().remove(record);
                                     this.up("window").close();
+                                    console.log("-----"+record[0].getData().id);
                                     //从数据库中删除
                                     for(var i = 0;i<record.length;i++){
-                                        dele(Ext.getCmp("commodity").getSelectionModel().getSelection()[i].data.id);
+                                        dele(record[i].getData().id);
                                     }
 
 
@@ -199,7 +200,7 @@ Ext.define('ssmDemo.view.Commodity', {
             {
                 xtype: 'button',
                 text: "查询",
-                id: "query",
+
                 tooltip: '查询',
                 handler: function () {
 

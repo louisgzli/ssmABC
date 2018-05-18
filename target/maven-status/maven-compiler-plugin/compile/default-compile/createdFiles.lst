@@ -10,5 +10,6 @@ action\CommodityAction.class
 model\Commodity.class
 dao\UserMapper.class
 dao\CompanyDaoMapper.class
+action\UserManager.class
 action\CompanyAction.class
 model\Company.class

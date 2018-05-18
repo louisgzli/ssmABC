@@ -69,7 +69,7 @@ public class EmployeeAction {
 
     public void employeeCreate(){
         Employee temp = new Employee();
-        temp.setId(id);
+
         temp.setName(name);
         temp.setAge(age);
         temp.setCompany(company);

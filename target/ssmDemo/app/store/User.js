@@ -8,11 +8,11 @@ Ext.define("ssmDemo.store.User",{
     proxy:{
 
         type:"ajax",
-        url:"user/loadUser.action",
+        url:"user/loadUser",
 
         reader:{
             type:"json",
-            root:"users",
+            root:"userList",
         },
 
 

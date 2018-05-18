@@ -47,7 +47,7 @@ Ext.define('ssmDemo.view.Employee', {
                 xtype: 'button',
                 text: '添加',
                 tooltip: '添加',
-                id: "add",
+
                 listeners: {
                     click: {
                         fn: function () {
@@ -70,7 +70,7 @@ Ext.define('ssmDemo.view.Employee', {
                                             Ext.getCmp("employee").getStore().insert(0, values);
                                             this.up("window").hide();
                                             //添加同步导数据库
-                                            add(values);
+                                            employee_add(values);
 
 
                                         }
@@ -93,7 +93,7 @@ Ext.define('ssmDemo.view.Employee', {
             {
                 xtype: 'button',
                 text: '修改',
-                id: "modify",
+
                 tooltip: '修改',
                 listeners: {
                     click: {
@@ -121,7 +121,7 @@ Ext.define('ssmDemo.view.Employee', {
 
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("employee").getSelectionModel().getLastSelected().data.id;
-                                            update(values);
+                                            employee_update(values);
                                         }
                                     }, {
                                         minWidth: 80,
@@ -149,7 +149,7 @@ Ext.define('ssmDemo.view.Employee', {
                 xtype: 'button',
                 text: "删除",
                 tooltip: '删除',
-                id: "delete",
+
                 handler: function () {
                     console.log("employee点了删除")
 
@@ -172,8 +172,9 @@ Ext.define('ssmDemo.view.Employee', {
                                     console.log(record);
                                     Ext.getCmp("employee").getStore().remove(record);
                                     this.up("window").close();
+                                    //从数据库中删除
                                     for(var i = 0;i<record.length;i++){
-                                        dele(Ext.getCmp("employee").getSelectionModel().getSelection()[i].data.id);
+                                        employee_dele(record[i].getData().id);
                                     }
 
                                 }
@@ -195,7 +196,7 @@ Ext.define('ssmDemo.view.Employee', {
             {
                 xtype: 'button',
                 text: "查询",
-                id: "query",
+
                 tooltip: '查询',
                 handler: function () {
 
@@ -251,6 +252,7 @@ Ext.define('ssmDemo.view.Employee', {
                         }
                         ],
                     }).show();
+                    Ext.getCmp("query_age").hide();
                 }
             },
         ],
@@ -290,7 +292,7 @@ Ext.define('ssmDemo.view.Employee', {
     },
 
 })
-function add(values){
+function employee_add(values){
     Ext.Ajax.request({
         url: 'employee/new.action',
 
@@ -304,7 +306,7 @@ function add(values){
         }
     });
 };
-function update(values){
+function employee_update(values){
     Ext.Ajax.request({
         url: 'employee/update.action',
 
@@ -317,7 +319,7 @@ function update(values){
         }
     });
 };
-function dele(id){
+function employee_dele(id){
 
     Ext.Ajax.request({
         url: 'employee/dele.action',

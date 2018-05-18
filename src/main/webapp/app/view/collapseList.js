@@ -3,6 +3,7 @@
  */
 Ext.define("tab_arraygrid",{
     extend:"Ext.panel.Panel",
+    height:"100%",
     items:[{
         xtype:"arraygrid",
     }]
@@ -10,23 +11,29 @@ Ext.define("tab_arraygrid",{
 });
 Ext.define("tab_user",{
     extend:"Ext.panel.Panel",
+    height:"100%",
     items:[{
         xtype:"user",
     }]
 })
 Ext.define("tab_employee",{
     extend:"Ext.panel.Panel",
+    height:"100%",
     items:[{
         xtype:"employee",
     }]
 })
-Ext.define("tab_commodity",{
-    extend:"Ext.panel.Panel",
-    items:[{
-        xtype:"commodity",
-    }]
-})
-Ext.define(
+
+    Ext.define("tab_commodity1",{
+        extend:"Ext.panel.Panel",
+        height:"100%",
+        items:[{
+            xtype:"commodity",
+        }]
+    }),
+
+
+    Ext.define(
 
 
     'ssmDemo.view.collapseList', {
@@ -57,10 +64,11 @@ Ext.define(
                 handler:function(){
                     var tab = Ext.getCmp("showtab");
                     if(Ext.getCmp("usertab")==undefined){
-                        tab.add(
+                       var tab_temp =  tab.add(
                             [
                                 {
                                     id:"usertab",
+                                    height:"100%",
                                     title:"用户管理",
                                     closable: true,
                                     items:Ext.create("tab_user")
@@ -70,7 +78,7 @@ Ext.define(
                         )
 
                     }
-
+                    tab.setActiveTab("usertab");
 
                 }
 
@@ -95,10 +103,11 @@ Ext.define(
                     handler:function(){
                         var tab = Ext.getCmp("showtab");
                         if(Ext.getCmp("arraygridtab")==undefined){
-                            tab.add(
+                          var   tab_temp =  tab.add(
                                 [
                                     {
                                         id:"arraygridtab",
+                                        height:"100%",
                                         title:"企业信息管理",
                                         closable: true,
                                         items:Ext.create("tab_arraygrid")
@@ -108,6 +117,8 @@ Ext.define(
                             )
 
                         }
+                        tab.setActiveTab("arraygridtab");
+                        console.log(Ext.getCmp("arraygridtab"))
 
 
 
@@ -123,10 +134,11 @@ Ext.define(
                     handler:function(){
                         var tab = Ext.getCmp("showtab");
                         if(Ext.getCmp("employeetab")==undefined){
-                            tab.add(
+                           var  tab_temp = tab.add(
                                 [
                                     {
                                         id:"employeetab",
+                                        height:"100%",
                                         title:"从业人员管理",
                                         closable: true,
                                         items:Ext.create("tab_employee")
@@ -134,9 +146,8 @@ Ext.define(
                                     }
                                 ]
                             )
-
                         }
-
+                        tab.setActiveTab("employeetab");
                     }
 
                 },
@@ -158,30 +169,49 @@ Ext.define(
 
                 {
 
-                    title: '大类',
+                    title: '植物',
                     layout : 'vbox',
                     items:[
                         {
 
                             xtype:"button",
-                            text:"小类",
+                            text:"树木",
                             width:"100%",
                             handler:function(){
+                                var tab = Ext.getCmp("showtab");
 
-                                if(Ext.getCmp("employeetab")==undefined){
-                                    tab.add(
+
+
+                                if(Ext.getCmp("commoditytab1")==undefined){
+                                    var tab_temp = tab.add(
                                         [
                                             {
-                                                id:"employeetab",
-                                                title:"从业人员管理",
+                                                id:"commoditytab1",
+                                                height:"100%",
+
+                                                title:"树木",
                                                 closable: true,
-                                                items:Ext.create("tab_employee")
+                                                items:Ext.create("tab_commodity1")
 
                                             }
                                         ]
                                     )
 
                                 }
+                                Ext.getCmp("commoditytab1").setTitle("树木");
+
+                                tab.setActiveTab("commoditytab1");
+                                // 使用过滤规则
+                                var store = Ext.getCmp("commodity").getStore();
+                                store.clearFilter(true);
+                                store.filter([
+
+                                    {property:"pType",value:"植物"},
+                                    {property:"aType",value:"树木"}
+                                ]
+                                );
+
+
 
                             }
 
@@ -189,23 +219,40 @@ Ext.define(
                         {
 
                             xtype:"button",
-                            text:"小类",
+                            text:"花草",
                             width:"100%",
                             handler:function(){
                                 var tab = Ext.getCmp("showtab");
-                                var tab3 = tab.add([
-                                    {title:"商品管理",
-                                        id:"commodity2",
-                                        closable: true,
-                                        items:[
+                                Ext.getCmp("showtab");
+                                if(Ext.getCmp("commoditytab1")==undefined){
+                                    var tab_temp  = tab.add(
+                                        [
                                             {
-                                                xtype:"commodity",
+                                                id:"commoditytab1",
+                                                height:"100%",
+                                                title:"花草",
+                                                closable: true,
+                                                items:Ext.create("tab_commodity1")
+
                                             }
                                         ]
-                                    }
-                                ])
+                                    )
+
+                                }
+                                Ext.getCmp("commoditytab1").setTitle("花草");
+
+                                tab.setActiveTab("commoditytab1");
+                                var store = Ext.getCmp("commodity").getStore();
+                                store.clearFilter(true);
+                                store.filter([
+                                        {property:"pType",value:"植物"},
+                                        {property:"aType",value:"花草"}
+                                ]
+
+                                );
 
                             }
+
 
                         },
 
@@ -213,27 +260,41 @@ Ext.define(
                 },
                 {
 
-                    title: '大类',
+                    title: '动物',
                     layout : 'vbox',
                     items:[
                         {
 
                             xtype:"button",
-                            text:"小类",
+                            text:"哺乳动物",
                             width:"100%",
                             handler:function(){
                                 var tab = Ext.getCmp("showtab");
-                                var tab3 = tab.add([
-                                    {title:"商品管理",
-                                        id:"commodity3",
-                                        closable: true,
-                                        items:[
+                                if(Ext.getCmp("commoditytab1")==undefined){
+                                    tab.add(
+                                        [
                                             {
-                                                xtype:"commodity",
+                                                id:"commoditytab1",
+                                                height:"100%",
+                                                title:"哺乳动物",
+                                                closable: true,
+                                                items:Ext.create("tab_commodity1")
+
                                             }
                                         ]
-                                    }
-                                ])
+                                    )
+
+                                }
+                                Ext.getCmp("commoditytab1").setTitle("哺乳动物");
+                                tab.setActiveTab("commoditytab1");
+                                var store = Ext.getCmp("commodity").getStore();
+                                store.clearFilter(true);
+                                store.filter([
+                                    {property:"pType",value:"动物"},
+                                    {property:"aType",value:"哺乳动物"}
+                                ]
+                                );
+
 
                             }
 
@@ -241,21 +302,35 @@ Ext.define(
                         {
 
                             xtype:"button",
-                            text:"小类",
+                            text:"鸟类",
                             width:"100%",
                             handler:function(){
                                 var tab = Ext.getCmp("showtab");
-                                var tab3 = tab.add([
-                                    {title:"商品管理",
-                                        id:"commodity4",
-                                        closable: true,
-                                        items:[
+                                if(Ext.getCmp("commoditytab1")==undefined){
+                                    tab.add(
+                                        [
                                             {
-                                                xtype:"commodity",
+                                                id:"commoditytab1",
+                                                height:"100%",
+                                                title:"鸟类",
+                                                closable: true,
+                                                items:Ext.create("tab_commodity1")
+
                                             }
                                         ]
-                                    }
-                                ])
+                                    )
+
+                                }
+                                Ext.getCmp("commoditytab1").setTitle("鸟类");
+                                tab.setActiveTab("commoditytab1");
+                                var store = Ext.getCmp("commodity").getStore();
+                                store.clearFilter(true);
+                                store.filter([
+                                    {property:"pType",value:"动物"},
+                                    {property:"aType",value:"鸟类"}
+                                ]
+                                );
+
 
                             }
 

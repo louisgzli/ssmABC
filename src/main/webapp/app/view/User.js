@@ -50,7 +50,7 @@ Ext.define('ssmDemo.view.User', {
                 xtype: 'button',
                 text: '添加',
                 tooltip: '添加',
-                id: "add",
+
                 listeners: {
                     click: {
                         fn: function () {
@@ -73,7 +73,7 @@ Ext.define('ssmDemo.view.User', {
                                             Ext.getCmp("user").getStore().insert(0, values);
                                             this.up("window").hide();
                                             //添加同步导数据库
-                                            add(values);
+                                            user_add(values);
 
 
                                         }
@@ -96,7 +96,7 @@ Ext.define('ssmDemo.view.User', {
             {
                 xtype: 'button',
                 text: '修改',
-                id: "modify",
+
                 tooltip: '修改',
                 listeners: {
                     click: {
@@ -123,7 +123,7 @@ Ext.define('ssmDemo.view.User', {
                                             win.destroy();
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("user").getSelectionModel().getLastSelected().data.id;
-                                            update(values);
+                                            user_update(values);
                                         }
                                     }, {
                                         minWidth: 80,
@@ -151,7 +151,7 @@ Ext.define('ssmDemo.view.User', {
                 xtype: 'button',
                 text: "删除",
                 tooltip: '删除',
-                id: "delete",
+
                 handler: function () {
                     console.log("user点了删除")
 
@@ -176,7 +176,7 @@ Ext.define('ssmDemo.view.User', {
                                     this.up("window").close();
                                     //从数据库中删除
                                     for(var i = 0;i<record.length;i++){
-                                        dele(Ext.getCmp("user").getSelectionModel().getSelection()[i].data.id);
+                                        user_dele(record[i].getData().id);
                                     }
 
 
@@ -199,11 +199,11 @@ Ext.define('ssmDemo.view.User', {
             {
                 xtype: 'button',
                 text: "查询",
-                id: "query",
+
                 tooltip: '查询',
                 handler: function () {
 
-                    Ext.create('ssm.view.UserChange', {
+                    var win = Ext.create('ssmDemo.view.UserChange', {
                         dockedItems: [{
                             xtype: 'toolbar',
                             dock: 'bottom',
@@ -216,6 +216,7 @@ Ext.define('ssmDemo.view.User', {
                                     text: "查询",
                                     handler:function(){
                                         var form = this.up("window").down("form");
+
                                         values = form.getValues();
                                         var userNameKey = values.name;
 
@@ -251,6 +252,7 @@ Ext.define('ssmDemo.view.User', {
                         }
                         ],
                     }).show();
+                    Ext.getCmp("query_userPassword").hide();
                 }
             },
         ],
@@ -266,16 +268,18 @@ Ext.define('ssmDemo.view.User', {
             },
 
             {
+
                 text: '用户名',
                 flex: 1,
                 sortable: false,
                 dataIndex: 'name'
             },
             {
+
                 text: '密码',
                 flex: 1,
                 sortable: false,
-                dataIndex: 'passoword'
+                dataIndex: 'password'
             },
 
         ];
@@ -285,7 +289,7 @@ Ext.define('ssmDemo.view.User', {
     },
 
 })
-function add(values){
+function user_add(values){
     Ext.Ajax.request({
         url: 'user/new.action',
 
@@ -298,7 +302,7 @@ function add(values){
         }
     });
 };
-function update(values){
+function user_update(values){
     Ext.Ajax.request({
         url: 'user/update.action',
 
@@ -310,7 +314,7 @@ function update(values){
         }
     });
 };
-function dele(id){
+function user_dele(id){
     console.log("->>>>>>>>>>>>>>>>>>>>>");
     Ext.Ajax.request({
         url: 'user/dele.action',

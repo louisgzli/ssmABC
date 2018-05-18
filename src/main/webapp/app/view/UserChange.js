@@ -19,8 +19,8 @@ Ext.define('ssmDemo.view.UserChange', {
         },
 
         items:[
-            {fieldLabel:"用户名",name:"name",allowBanks:false},
-            {fieldLabel:"密码",name:"password",allowBanks:false},
+            {xtype:"textfield",id:"query_userName", fieldLabel:"用户名",name:"name",allowBanks:false},
+            {xtype:"textfield",id:"query_userPassword",fieldLabel:"密码",name:"password",allowBanks:false},
 
 
         ],

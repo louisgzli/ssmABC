@@ -16,7 +16,7 @@ public class UserAction {
     public int id;
     public String name;
     public String password;
-    public List<User> users;
+    public List<User> userList;
     public boolean success;
     public String msg;
 
@@ -28,12 +28,12 @@ public class UserAction {
         return msg;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public UserMapper getUserMapper() {
@@ -67,19 +67,25 @@ public class UserAction {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String loadUser(){
-        users = userMapper.findAll();
+
+    public String loadUser() throws Exception{
+
+        System.out.println("loadUser");
+        userList = userMapper.findAll();
         return "success";
     }
 
     public void userCreate(){
+        System.out.println("userCreate");
         User temp = new User();
-        temp.setId(id);
+
         temp.setName(name);
         temp.setPassword(password);
         userMapper.saveOrUpdate(temp);
     }
     public void userUpdate(){
+        System.out.println("userUpdate");
+
         User temp = new User();
         temp.setId(id);
         temp.setName(name);
@@ -88,6 +94,8 @@ public class UserAction {
     }
 
     public void dele(){
+        System.out.println("dele");
+
         userMapper.deleteById(id);
     }
 

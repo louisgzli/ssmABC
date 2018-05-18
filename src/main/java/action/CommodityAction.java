@@ -64,14 +64,17 @@ public class CommodityAction {
     }
 
     public void commodityCreate(){
+        System.out.println("commodityCreate");
+
         Commodity temp = new Commodity();
-        temp.setId(id);
+
         temp.setName(name);
         temp.setpType(pType);
         temp.setaType(aType);
         commodityMapper.saveOrUpdate(temp);
     }
     public void commodityUpdate(){
+        System.out.println("commodityUpdate");
         Commodity temp = new Commodity();
         temp.setId(id);
         temp.setName(name);
@@ -81,10 +84,12 @@ public class CommodityAction {
     }
 
     public void dele(){
+        System.out.println("Commodity dele");
+
         commodityMapper.deleteById(id);
     }
     public String loadCommodity() throws Exception{
-
+        System.out.println("loadCommodity");
         commodity = commodityMapper.findAll();
         return "success";
     }

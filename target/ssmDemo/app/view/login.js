@@ -84,7 +84,7 @@ Ext.onReady(function() {
                         console.log("hello ");
                         window.location.href="index.html"
                     }else if(action.result.msg == 'ERROR') {
-                        window.location.href="index.jsp";
+                        window.location.href="index.html";
                     }
                 },
                 //提交失败的回调函数

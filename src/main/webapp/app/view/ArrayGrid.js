@@ -44,7 +44,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                 xtype: 'button',
                 text: '添加',
                 tooltip: '添加',
-                id: "add",
+
                 listeners: {
                     click: {
                         fn: function () {
@@ -65,7 +65,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                             values = form.getValues();
 
                                             //添加同步导数据库
-                                            add(values);
+                                           company_add(values);
 
                                             var store = Ext.getCmp("arraygrid").getStore();
 
@@ -95,7 +95,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
             {
                 xtype: 'button',
                 text: '修改',
-                id: "modify",
+
                 tooltip: '修改',
                 listeners: {
                     click: {
@@ -122,7 +122,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
                                             //修改同步到数据库
                                             values.id = Ext.getCmp("arraygrid").getSelectionModel().getLastSelected().data.id;
-                                            update(values);
+                                            company_update(values);
 
                                             record.set(values);
                                             win.destroy();
@@ -155,7 +155,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                 xtype: 'button',
                 text: "删除",
                 tooltip: '删除',
-                id: "delete",
+
                 handler: function () {
                     console.log("arraygrid点了删除")
                     Ext.create("Ext.window.Window",{
@@ -175,9 +175,9 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                                 handler: function () {
                                      record = Ext.getCmp("arraygrid").getSelectionModel().getSelection();
 
-                                     //从数据库中删除
+                                    //从数据库中删除
                                     for(var i = 0;i<record.length;i++){
-                                        dele(Ext.getCmp("arraygrid").getSelectionModel().getSelection()[i].data.id);
+                                        company_dele(record[i].getData().id);
                                     }
 
 
@@ -206,7 +206,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
             {
                 xtype: 'button',
                 text: "查询",
-                id: "query",
+
                 tooltip: '查询',
                 handler: function () {
 
@@ -270,26 +270,9 @@ Ext.define('ssmDemo.view.ArrayGrid', {
                         ],
 
                     }).show();
-
-
-
                 }
 
             },
-
-            {
-                xtype: 'button',
-                text: "保存更新",
-                tooltip: '保存更新',
-                handler:function () {
-                    Ext.getCmp("arraygrid").getStore().sync();
-                    
-                    
-                }
-
-            },
-
-
         ],
     }],
 
@@ -362,7 +345,7 @@ Ext.define('ssmDemo.view.ArrayGrid', {
 
 });
 
-function add(values){
+function company_add(values){
     Ext.Ajax.request({
         url: 'company/new.action',
 
@@ -376,7 +359,7 @@ function add(values){
         }
     });
 };
-function update(values){
+function company_update(values){
     Ext.Ajax.request({
         url: "company/update.action",
 
@@ -390,7 +373,7 @@ function update(values){
         }
     });
 };
-function dele(id){
+function company_dele(id){
     console.log("->>>>>>>>>>>>>>>>>>>>>");
     Ext.Ajax.request({
         url: 'company/dele.action',

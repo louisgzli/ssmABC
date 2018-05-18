@@ -21,7 +21,7 @@ Ext.define('ssmDemo.view.EmployeeChange', {
         items:[
             {fieldLabel:"职员姓名",name:"name",allowBanks:false},
             {fieldLabel:"所属公司",name:"company",allowBanks:false},
-            {xtype:"numberfield",fieldLabel:"年龄",name:"age",allowBanks:false},
+            {xtype:"numberfield",id:"query_age",fieldLabel:"年龄",name:"age",allowBanks:false},
 
 
         ],

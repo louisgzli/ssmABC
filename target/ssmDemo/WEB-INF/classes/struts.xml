@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
 
 	<constant name="struts.devMode" value="true" />
 
-	<package name="/company" extends="json-default">
+	<package name="/company" namespace="/company" extends="json-default">
 		<!--company-->
 		<action name="loadCompany" class = "action.CompanyAction" method="loadCompany">
 			<result name="success" type="json"/>
@@ -20,7 +20,7 @@
      </package>
 
 
-	<package name="/commodity" extends="json-default">
+	<package name="/commodity" namespace="/commodity" extends="json-default">
 		<!--commodity-->
 		<action name="loadCommodity" class = "action.CommodityAction" method="loadCommodity">
 			<result name="success" type="json"/>
@@ -33,7 +33,7 @@
 
 	</package>
 
-	<package name="/employee" extends="json-default">
+	<package name="/employee" namespace="/employee" extends="json-default">
 		<!--employee-->
 		<action name="loadEmployee" class = "action.EmployeeAction" method="loadEmployee">
 			<result name="success" type="json"/>
@@ -48,9 +48,9 @@
 
 
 
-	<package name="/user" extends="json-default">
+	<package name="/user" namespace="/user" extends="json-default">
 		<!--user-->
-		<action name="loadUser" class = "action.UserAction" method="loadUser">
+		<action name="loadUser" class = "action.UserManager" method="loadUser">
 			<result name="success" type="json"/>
 		</action>
 		<action name="new" class="action.UserAction" method="userCreate">
@@ -60,7 +60,7 @@
 		<action name="dele" class="action.UserAction" method="dele"></action>
 	</package>
 
-	<package name="/login" extends="json-default">
+	<package name="/login" namespace="/login" extends="json-default">
 		<action name="login" class="action.UserAction" method="login">
 			<result type="json"></result>
 		</action>

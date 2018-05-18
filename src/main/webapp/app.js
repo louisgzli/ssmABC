@@ -33,9 +33,10 @@
             // Ext.create("ssmDemo.view.Employee",{
             //     renderTo:Ext.get("grid-right")
             // });
-            // Ext.create("ssmDemo.view.User",{
+            // var temp = Ext.create("ssmDemo.view.User",{
             //     renderTo:Ext.get("grid-right")
             // });
+
 
 
 

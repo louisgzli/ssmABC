@@ -66,8 +66,9 @@ public class CompanyAction extends ActionSupport {
 
     //添加company
     public void companyCreate(){
+        System.out.println("companyCreate");
         Company temp = new Company();
-        temp.setId(id);
+
         temp.setStaff(staff);
         temp.setCompany(company);
         temp.setArea(area);
@@ -77,6 +78,8 @@ public class CompanyAction extends ActionSupport {
     }
     //修改company
     public void companyUpdate(){
+        System.out.println("companyUpdate");
+
         Company temp = new Company();
         temp.setId(id);
         temp.setStaff(staff);
@@ -88,6 +91,7 @@ public class CompanyAction extends ActionSupport {
     }
     //删除company
     public void companyDelete(){
+        System.out.println("companyDelete");
         System.out.println("-%%%%%%%%%%%%%%%%%%%%%%%%%%%=====================*********************");
         companyDaoMapper.deleteById(id);
     }

@@ -18,7 +18,7 @@
             where id = #{id}
         </if>
         <if test="count==0">
-            insert into employee values(#{id}, #{name},#{age},#{company})
+            insert into employee (name,age,company) values(#{name},#{age},#{company})
         </if>
     </insert>
     <delete id="deleteById" parameterType="int">

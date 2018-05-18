@@ -18,7 +18,7 @@
             where id = #{id}
         </if>
         <if test="count==0">
-            insert into commodity values(#{id}, #{name},#{pType},#{aType})
+            insert into commodity (name,ptype,atype) values(#{name},#{pType},#{aType})
         </if>
     </insert>
 
