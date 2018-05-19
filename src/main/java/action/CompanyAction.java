@@ -74,7 +74,7 @@ public class CompanyAction extends ActionSupport {
         temp.setArea(area);
         temp.setType(type);
         System.out.println(temp);
-        companyDaoMapper.saveOrUpdate(temp);
+        companyDaoMapper.insert(temp);
     }
     //修改company
     public void companyUpdate(){

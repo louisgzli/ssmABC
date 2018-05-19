@@ -1,8 +1,7 @@
 package dao;
 
-import model.Company;
-
 import model.User;
+
 import java.util.List;
 
 public interface UserMapper {
@@ -10,4 +9,5 @@ public interface UserMapper {
     public void saveOrUpdate(User user);
     public void deleteById(int id);
     public User selectByName(String name);
+    public void insert(User user);
 }

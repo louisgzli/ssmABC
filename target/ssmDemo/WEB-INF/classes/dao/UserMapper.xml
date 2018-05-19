@@ -9,20 +9,17 @@
     <select id="selectByName" resultType="model.User" parameterType="String">
         select * from usertemp where name=#{name}
     </select>
-
+    <insert id="insert" parameterType="model.User" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select NVL(max(id)+1,1) from usertemp
+        </selectKey>
+        insert into usertemp (id,name,password) values(#{id},#{name},#{password})
+    </insert>
 
     <insert id="saveOrUpdate" parameterType="model.User">
-        <selectKey keyProperty="count" resultType="int" order="BEFORE">
-            select count(*) from usertemp where id = #{id}
-        </selectKey>
-        <if test="count > 0">
             update usertemp
             set name = #{name},password = #{password}
             where id = #{id}
-        </if>
-        <if test="count==0">
-            insert into usertemp (name,password) values(#{name},#{password})
-        </if>
     </insert>
     <delete id="deleteById" parameterType="int">
     delete from usertemp where id=#{id}

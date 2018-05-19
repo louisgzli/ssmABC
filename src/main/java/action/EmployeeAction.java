@@ -73,7 +73,7 @@ public class EmployeeAction {
         temp.setName(name);
         temp.setAge(age);
         temp.setCompany(company);
-        employeeMapper.saveOrUpdate(temp);
+        employeeMapper.insert(temp);
     }
     public void employeeUpdate(){
         Employee temp = new Employee();

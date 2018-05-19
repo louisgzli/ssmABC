@@ -1,7 +1,6 @@
 package action;
 
 import dao.UserMapper;
-import model.Employee;
 import model.User;
 
 import javax.annotation.Resource;
@@ -81,7 +80,7 @@ public class UserAction {
 
         temp.setName(name);
         temp.setPassword(password);
-        userMapper.saveOrUpdate(temp);
+        userMapper.insert(temp);
     }
     public void userUpdate(){
         System.out.println("userUpdate");
@@ -100,8 +99,9 @@ public class UserAction {
     }
 
     public String  login(){
+        System.out.println(name+"-=--=-=-=-=-=-=-="+password);
         User user = userMapper.selectByName(name);
-        System.out.println(password);
+        System.out.println(user.getPassword());
         System.out.println(user.getPassword().equals(password));
         System.out.println(user!=null);
         if(user!=null&&user.getPassword().equals(password)){

@@ -7,19 +7,17 @@
   select * from commodity
 </select>
 
+    <insert id="insert" parameterType="model.Commodity" useGeneratedKeys="true" keyProperty="id">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select NVL(max(id)+1,1) from commodity
+        </selectKey>
+        insert into commodity (id,name,ptype,atype) values(#{id},#{name},#{pType},#{aType})
+    </insert>
 
     <insert id="saveOrUpdate" parameterType="model.Commodity">
-        <selectKey keyProperty="count" resultType="int" order="BEFORE">
-            select count(*) from commodity where id = #{id}
-        </selectKey>
-        <if test="count > 0">
             update commodity
             set name = #{name},ptype = #{pType},atype =#{aType}
             where id = #{id}
-        </if>
-        <if test="count==0">
-            insert into commodity (name,ptype,atype) values(#{name},#{pType},#{aType})
-        </if>
     </insert>
 
     <delete id="deleteById" parameterType="int">

@@ -71,7 +71,7 @@ public class CommodityAction {
         temp.setName(name);
         temp.setpType(pType);
         temp.setaType(aType);
-        commodityMapper.saveOrUpdate(temp);
+        commodityMapper.insert(temp);
     }
     public void commodityUpdate(){
         System.out.println("commodityUpdate");
