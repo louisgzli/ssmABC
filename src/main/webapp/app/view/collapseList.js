@@ -63,6 +63,7 @@ Ext.define("tab_employee",{
                 width:"100%",
                 handler:function(){
                     var tab = Ext.getCmp("showtab");
+                    console.log(Ext.getCmp("usertab"))
                     if(Ext.getCmp("usertab")==undefined){
                        var tab_temp =  tab.add(
                             [
@@ -71,12 +72,16 @@ Ext.define("tab_employee",{
                                     height:"100%",
                                     title:"用户管理",
                                     closable: true,
+                                    deferredRender:false,
                                     items:Ext.create("tab_user")
 
                                 }
                             ]
                         )
 
+                    }
+                    else{
+                        tab.setActiveTab("usertab");
                     }
                     tab.setActiveTab("usertab");
 
@@ -117,6 +122,7 @@ Ext.define("tab_employee",{
                             )
 
                         }
+
                         tab.setActiveTab("arraygridtab");
                         console.log(Ext.getCmp("arraygridtab"))
 
@@ -147,6 +153,7 @@ Ext.define("tab_employee",{
                                 ]
                             )
                         }
+
                         tab.setActiveTab("employeetab");
                     }
 
@@ -239,6 +246,7 @@ Ext.define("tab_employee",{
                                     )
 
                                 }
+
                                 Ext.getCmp("commoditytab1").setTitle("花草");
 
                                 tab.setActiveTab("commoditytab1");
@@ -285,6 +293,7 @@ Ext.define("tab_employee",{
                                     )
 
                                 }
+
                                 Ext.getCmp("commoditytab1").setTitle("哺乳动物");
                                 tab.setActiveTab("commoditytab1");
                                 var store = Ext.getCmp("commodity").getStore();
@@ -321,6 +330,7 @@ Ext.define("tab_employee",{
                                     )
 
                                 }
+
                                 Ext.getCmp("commoditytab1").setTitle("鸟类");
                                 tab.setActiveTab("commoditytab1");
                                 var store = Ext.getCmp("commodity").getStore();

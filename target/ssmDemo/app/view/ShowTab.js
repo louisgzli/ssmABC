@@ -6,7 +6,7 @@ Ext.define("ssmDemo.view.ShowTab", {
     alias:"widget.showtab",
     id:"showtab",
     stateId:"showtab",
-    autoDestroy: false,
+    autoDestroy: true,
     initComponent: function () {
         this.callParent();
     }
